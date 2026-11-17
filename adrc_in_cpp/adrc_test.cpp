@@ -32,7 +32,7 @@ int main() {
     float x_dot = 0.0f;
 
     const float dt = cfg.dt;
-    const float ref = 10.0f;
+    float ref = 10.0f;
     const float b0_true = 2.4f;
 
     const int steps = 2000;
@@ -50,6 +50,11 @@ int main() {
 
     // 4. Simulation loop
     for (int k = 0; k < steps; ++k) {
+        //Switch reference halfway
+        if (k == steps >> 1) {
+            ref = 5.0f;
+        }
+
         const float t = k * dt;
 
         const float disturbance = (t > 5.0f) ? 3.0f * std::sin(t) : 4.0f * std::cos(t) + 5.0f * std::sin(t);
