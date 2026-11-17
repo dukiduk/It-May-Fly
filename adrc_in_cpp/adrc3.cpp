@@ -2,7 +2,6 @@
 #include "adrc3.hpp"
 #include <cstring>
 #include <cmath>
-#include <algorithm>
 
 void ADRC3::init(const Config& cfg) {
     configure(cfg);

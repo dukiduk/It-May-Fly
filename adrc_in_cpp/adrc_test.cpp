@@ -2,20 +2,19 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-
 #include "adrc3.hpp"
 
 int main() {
     // 1. Configure ADRC
     ADRC3::Config cfg{};
 
-    cfg.omega_c = 4.0f;
-    cfg.omega_o = 10.0f;
+    cfg.omega_c = 3.0f;
+    cfg.omega_o = 15.0f;
     cfg.b0 = 2.0f;
 
     cfg.delta = 0.01f;
-    cfg.alpha1 = 0.5f;
-    cfg.alpha2 = 0.25f;
+    cfg.alpha1 = 0.25f;
+    cfg.alpha2 = 0.5f;
 
     cfg.dt = 0.005f;
 
@@ -33,13 +32,13 @@ int main() {
     float x_dot = 0.0f;
 
     const float dt = cfg.dt;
-    const float ref = 9.0f;
+    const float ref = 10.0f;
     const float b0_true = 2.4f;
 
     const int steps = 2000;
 
     // 3. Open CSV file
-    std::ofstream file("log.csv");
+    std::ofstream file("adrc_in_cpp/log.csv");
 
     if (!file.is_open()) {
         std::cerr << "Error: could not open log.csv for writing\n";
@@ -53,7 +52,7 @@ int main() {
     for (int k = 0; k < steps; ++k) {
         const float t = k * dt;
 
-        const float disturbance = (t > 5.0f) ? 3.0f : 0.0f;
+        const float disturbance = (t > 5.0f) ? 3.0f * std::sin(t) : 4.0f * std::cos(t) + 5.0f * std::sin(t);
 
         // Calculate controller output
         const float u = controller.step(ref, 0.0f, x);
