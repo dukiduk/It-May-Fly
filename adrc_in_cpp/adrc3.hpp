@@ -60,7 +60,7 @@ private:
     float inverse_dpow2_ = 0.0f;
 
     void update_eso(float y, float u);
-    static float fal_p(float e);
-    static float fal_d(float e);
+    float fal_p(float e);
+    float fal_d(float e);
     static float rate_limit(float target, float prev, float max_rate, float dt);
 };

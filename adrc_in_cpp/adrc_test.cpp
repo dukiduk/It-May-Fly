@@ -10,7 +10,7 @@ int main() {
     ADRC3::Config cfg{};
 
     cfg.omega_c = 4.0f;
-    cfg.omega_o = 12.0f;
+    cfg.omega_o = 10.0f;
     cfg.b0 = 2.0f;
 
     cfg.delta = 0.01f;
@@ -19,8 +19,8 @@ int main() {
 
     cfg.dt = 0.005f;
 
-    cfg.u_min = -5.0f;
-    cfg.u_max = 5.0f;
+    cfg.u_min = -3.3f;
+    cfg.u_max = 3.3f;
     cfg.u_rate_max = 50.0f;
 
     cfg.use_nonlinear = true;
@@ -33,7 +33,7 @@ int main() {
     float x_dot = 0.0f;
 
     const float dt = cfg.dt;
-    const float ref = 10.0f;
+    const float ref = 9.0f;
     const float b0_true = 2.4f;
 
     const int steps = 2000;
@@ -69,9 +69,9 @@ int main() {
         file << t << ","
              << x << ","
              << u << ","
-             << controller.z_[0] << ","
-             << controller.z_[1] << ","
-             << controller.z_[2] << "\n";
+             << controller.position_est() << ","
+             << controller.velocity_est() << ","
+             << controller.disturbance_est() << "\n";
     }
 
     file.close();
@@ -80,6 +80,5 @@ int main() {
     std::cout << "Wrote " << steps << " rows to log.csv\n";
     std::cout << "Final x = " << x
               << " (target = " << ref << ")\n";
-
     return 0;
 }
