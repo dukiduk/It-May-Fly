@@ -2,7 +2,7 @@ We are making a plane here. ADRC control!
 
 Ultimate goal is to create a fully autonomous plane that can follow 3d trajectories
 
-genuinely idk why tf we were doing stuff here. Pretty much everything thats important code-wise has been moved to STM32CubeIDE. Luckily I could still use this to steal some sensor parsers, even though much of them are now obsolete
+main branch is just a place where I can draft new files. stm32 branch is version control for the STM32CubeIDE project
 
 Control loop:
 
