@@ -40,6 +40,7 @@ public:
     float position_est()    const { return z_[0]; }
     float velocity_est()    const { return z_[1]; }
     float disturbance_est() const { return z_[2]; }
+    
 
 private:
     Config cfg_{};
